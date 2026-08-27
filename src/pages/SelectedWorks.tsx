@@ -10,7 +10,7 @@ const projects = [
     stack: "Monteiro Advocacia",
     description: "Assessoria jurídica contenciosa e consultiva estratégica voltada para o mercado corporativo. Focamos na mitigação de riscos, estruturação societária, recuperação de crédito, e mediação de conflitos empresariais com alta eficiência para garantir o pleno funcionamento do seu negócio.",
     links: { live: "#", code: "#" },
-    image: "/p1.webp",
+    image: `${import.meta.env.BASE_URL}p1.webp`,
     bgColor: "#0a0a0a", // Preto
     cta: "Saiba mais"
   },
@@ -20,7 +20,7 @@ const projects = [
     stack: "Monteiro Advocacia",
     description: "Elaboração, revisão minuciosa e análise crítica de contratos complexos. Protegemos os interesses dos nossos clientes criando mecanismos de segurança jurídica inquebráveis, prevenindo litígios futuros e assegurando que todas as cláusulas estejam alinhadas à legislação vigente e aos objetivos do negócio.",
     links: { live: "#", code: "#" },
-    image: "/p2.webp",
+    image: `${import.meta.env.BASE_URL}p2.webp`,
     bgColor: "#d95d14", // Laranja
     cta: "Saiba mais"
   },
@@ -30,7 +30,7 @@ const projects = [
     stack: "Monteiro Advocacia",
     description: "Atuação robusta em demandas patrimoniais, obrigações civis, planejamento sucessório e reparação por responsabilidade civil. Defendemos ativamente o patrimônio e os interesses individuais de nossos clientes através de negociações avançadas e representação judicial de alto padrão.",
     links: { live: "#", code: "#" },
-    image: "/p3.webp",
+    image: `${import.meta.env.BASE_URL}p3.webp`,
     bgColor: "#1a365d", // Azul
     cta: "Saiba mais"
   },
@@ -40,7 +40,7 @@ const projects = [
     stack: "Monteiro Advocacia",
     description: "Consultoria e assessoria completa em transações imobiliárias de alto valor. Desde a due diligence, confecção de contratos de compra e venda, usucapião, até a resolução de conflitos condominiais e locatícios, garantindo total transparência e segurança do seu patrimônio imobiliário.",
     links: { live: "#", code: "#" },
-    image: "/p4.webp",
+    image: `${import.meta.env.BASE_URL}p4.webp`,
     bgColor: "#b7950b", // Amarelo
     cta: "Saiba mais"
   },

@@ -57,10 +57,9 @@ export function Signature({
     async function load() {
       try {
         let font;
-        // Sempre tenta a local primeiro, se falhar tenta a do site original
         const pathsToTry = [
           fontUrl || "",
-          "/fonte/LastoriaBoldRegular.otf",
+          `${import.meta.env.BASE_URL}fonte/LastoriaBoldRegular.otf`,
           "https://www.componentry.fun/LastoriaBoldRegular.otf"
         ].filter(Boolean);
 

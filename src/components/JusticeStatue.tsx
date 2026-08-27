@@ -18,7 +18,7 @@ function Loader() {
 
 function Model(props: any) {
   // Try loading the model. Ensure the space in the filename is handled by the browser.
-  const gltf = useGLTF('/estatua-draco.glb');
+  const gltf = useGLTF(`${import.meta.env.BASE_URL}estatua-draco.glb`);
   const group = useRef<THREE.Group>(null);
   
   // Apply a sophisticated metallic material to all meshes in the model
@@ -100,7 +100,7 @@ function Model(props: any) {
 }
 
 // Preload the model in the background
-useGLTF.preload('/estatua-draco.glb');
+useGLTF.preload(`${import.meta.env.BASE_URL}estatua-draco.glb`);
 
 export default function JusticeStatue() {
   const [mount3D, setMount3D] = useState(false);

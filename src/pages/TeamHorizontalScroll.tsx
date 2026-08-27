@@ -7,28 +7,28 @@ const team = [
     name: "Dr. Rafael Monteiro",
     role: "Sócio-Fundador",
     description: "Visão estratégica e mais de 15 anos de atuação em contencioso de alta complexidade corporativa.",
-    image: "/t1.webp"
+    image: `${import.meta.env.BASE_URL}t1.webp`
   },
   {
     id: 2,
     name: "Dra. Helena Valença",
     role: "Sócia — Direito Empresarial",
     description: "Especialista em fusões, aquisições e estruturação societária com amplo histórico de sucesso.",
-    image: "/t2.webp"
+    image: `${import.meta.env.BASE_URL}t2.webp`
   },
   {
     id: 3,
     name: "Dr. Arthur Lemos",
     role: "Head de Contratos",
     description: "Foco rigoroso na mitigação de riscos estruturais e segurança jurídica para grandes contas.",
-    image: "/t3.webp"
+    image: `${import.meta.env.BASE_URL}t3.webp`
   },
   {
     id: 4,
     name: "Dra. Beatriz Alcântara",
     role: "Associada Sênior — Direito Civil",
     description: "Atuação destacada na resolução de conflitos patrimoniais e negociações de alta complexidade.",
-    image: "/t4.webp"
+    image: `${import.meta.env.BASE_URL}t4.webp`
   }
 ];
 
