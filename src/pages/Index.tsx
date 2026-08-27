@@ -9,7 +9,7 @@ import SelectedWorks from "./SelectedWorks";
 import VectorBridge from "./VectorBridge";
 import Footer from "./Footer";
 import Contact from "./Contact";
-import Testimonial from "./Testimonial";
+import TestimonialBridge from "./TestimonialBridge";
 import Navigation from "@/components/Navigation";
 import TeamHorizontalScroll from "./TeamHorizontalScroll";
 import JusticeStatue from "@/components/JusticeStatue";
@@ -231,7 +231,7 @@ const Index = () => {
         </div>
 
         <div className="bg-black text-white relative z-20">
-          <Testimonial />
+          <TestimonialBridge />
         </div>
 
         {/* Change contact layer to z-20 and relative so it scrolls normally OVER the footer */}
