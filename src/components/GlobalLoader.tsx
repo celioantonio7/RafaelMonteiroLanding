@@ -53,7 +53,7 @@ export default function GlobalLoader() {
       <Signature
         text="Rafael Monteiro"
         fontSize={isMobile ? 20 : 60}
-        strokeWidth={isMobile ? 1 : 2}
+        strokeWidth={isMobile ? 1 : 1}
         duration={2.5}
         color="#ffffff"
         fontUrl="/fonte/LastoriaBoldRegular.otf"
