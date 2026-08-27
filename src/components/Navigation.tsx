@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence, Variants } from "framer-motion";
+import { Link } from "react-router-dom";
 
 interface NavItem {
   label: string;
@@ -16,7 +17,8 @@ const navItems: NavItem[] = [
   { label: "Sobre", href: "#about", number: "01" },
   { label: "Atuação", href: "#work", number: "02" },
   { label: "Diferenciais", href: "#philosophy", number: "03" },
-  { label: "Contato", href: "#contact", number: "04" },
+  { label: "Radar Jurídico", href: "/insights", number: "04" },
+  { label: "Contato", href: "#contact", number: "05" },
 ];
 
 const socialItems: SocialItem[] = [
@@ -169,21 +171,14 @@ const Navigation = () => {
 
             {/* Nav Links */}
             <nav className="flex flex-col gap-0">
-              {navItems.map((item, i) => (
-                <div
-                  key={item.label}
-                  className="overflow-hidden border-b border-white/25 py-3 md:py-4"
-                >
-                  <motion.a
-                    href={item.href}
-                    onClick={handleNavClick}
-                    custom={i}
-                    variants={itemVariants}
-                    initial="closed"
-                    animate="open"
-                    exit="closed"
-                    className="flex items-baseline justify-between group cursor-pointer relative"
-                  >
+              {navItems.map((item, i) => {
+                const MotionLink = motion.create(Link);
+                const MotionA = motion.create("a");
+                
+                const isExternalOrAnchor = item.href.startsWith("mailto:") || item.href.startsWith("http") || item.href.startsWith("#");
+                
+                const linkContent = (
+                  <>
                     <span className="relative inline-flex items-center text-5xl md:text-7xl lg:text-8xl font-semibold text-white uppercase tracking-tight leading-none group-hover:translate-x-4 transition-all duration-500 ease-out">
                       {/* Texto de Fundo (Transparente no hover) */}
                       <span className="transition-colors duration-400 group-hover:text-white/10">
@@ -200,9 +195,44 @@ const Navigation = () => {
                     <span className="text-xs text-white/55 font-mono tracking-widest self-start mt-2">
                       {item.number}
                     </span>
-                  </motion.a>
-                </div>
-              ))}
+                  </>
+                );
+
+                return (
+                  <div
+                    key={item.label}
+                    className="overflow-hidden border-b border-white/25 py-3 md:py-4"
+                  >
+                    {!isExternalOrAnchor ? (
+                      <MotionLink
+                        to={item.href}
+                        onClick={handleNavClick}
+                        custom={i}
+                        variants={itemVariants}
+                        initial="closed"
+                        animate="open"
+                        exit="closed"
+                        className="flex items-baseline justify-between group cursor-pointer relative"
+                      >
+                        {linkContent}
+                      </MotionLink>
+                    ) : (
+                      <MotionA
+                        href={item.href}
+                        onClick={handleNavClick}
+                        custom={i}
+                        variants={itemVariants}
+                        initial="closed"
+                        animate="open"
+                        exit="closed"
+                        className="flex items-baseline justify-between group cursor-pointer relative"
+                      >
+                        {linkContent}
+                      </MotionA>
+                    )}
+                  </div>
+                );
+              })}
             </nav>
 
             {/* Bottom copyright */}

@@ -4,17 +4,25 @@ import { Signature } from "@/components/ui/signature";
 
 export default function GlobalLoader() {
   const { progress } = useProgress();
-  const [visible, setVisible] = useState(true);
+  const [visible, setVisible] = useState(() => {
+    // Only show the splash screen if it hasn't been seen in this session
+    return !sessionStorage.getItem('splash_seen');
+  });
   const [isFading, setIsFading] = useState(false);
   const [mountedAt] = useState(Date.now());
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    // Mark as seen so returning from blog doesn't trigger it again
+    if (visible) {
+      sessionStorage.setItem('splash_seen', 'true');
+    }
+    
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
-  }, []);
+  }, [visible]);
 
   useEffect(() => {
     // Failsafe: Sempre some após 6s, garantindo tempo de sobra para a fonte carregar

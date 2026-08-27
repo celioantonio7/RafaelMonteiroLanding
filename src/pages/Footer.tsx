@@ -1,5 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { Link } from "react-router-dom";
 import AnimatedLogo from "@/components/AnimatedLogo";
 
 const Footer = () => {
@@ -64,12 +65,18 @@ const Footer = () => {
         {/* Column 2: CHANNELS */}
         <motion.div variants={itemVariants} className="flex flex-col gap-1">
           <h3 className="font-sans text-xs font-bold uppercase tracking-widest mb-4 text-white/80">
-            Canais
+            Links
           </h3>
           <div className="flex flex-col gap-2">
+            <Link
+              to="/insights"
+              className="font-sans text-xs md:text-sm font-bold text-[#d95d14] uppercase tracking-wide hover:underline underline-offset-4 decoration-1 w-fit flex items-center gap-1"
+            >
+              Radar Jurídico (Blog) ↗
+            </Link>
             <a
               href="mailto:contato@monteiroadvocacia.com.br"
-              className="font-sans text-xs md:text-sm font-medium uppercase tracking-wide hover:underline underline-offset-4 decoration-1 w-fit flex items-center gap-1"
+              className="font-sans text-xs md:text-sm font-medium uppercase tracking-wide hover:underline underline-offset-4 decoration-1 w-fit flex items-center gap-1 mt-2"
             >
               Email ↗
             </a>

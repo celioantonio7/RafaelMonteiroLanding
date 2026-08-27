@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { ReactLenis } from 'lenis/react';
 import Index from "./pages/Index";
+import Insights from "./pages/Insights";
+import InsightPost from "./pages/InsightPost";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -18,16 +20,14 @@ const App = () => (
       // Desktop / Laptop settings
       smoothWheel: true,
       duration: 1.2,
-      // wheelMultiplier: 0.9 increases the "weight" by 10% (requires more physical movement)
       wheelMultiplier: 0.9,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
 
       // Touch-only physics
       syncTouch: true,
-      syncTouchLerp: 0.15,         // Subtle smooth trailing
-      // touchMultiplier: 1.2 reduces the "weight" by 20% (moves further with less effort)
+      syncTouchLerp: 0.15,
       touchMultiplier: 1.2,
-      touchInertiaExponent: 1.55,  // Subtle dampening
+      touchInertiaExponent: 1.55,
     }}>
       <TooltipProvider>
         <Toaster />
@@ -35,7 +35,8 @@ const App = () => (
         <BrowserRouter basename={import.meta.env.BASE_URL}>
           <Routes>
             <Route path="/" element={<Index />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="/insights" element={<Insights />} />
+            <Route path="/insights/:slug" element={<InsightPost />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
