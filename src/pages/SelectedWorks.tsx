@@ -1,5 +1,7 @@
 import { useEffect, useRef, useCallback, useState } from "react";
 import { useLenis } from "lenis/react";
+import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
 import StarBorder from "../components/StarBorder";
 import './ScrollStack.css';
 
@@ -12,7 +14,16 @@ const projects = [
     links: { live: "#", code: "#" },
     image: `${import.meta.env.BASE_URL}p1.webp`,
     bgColor: "#0a0a0a", // Preto
-    cta: "Saiba mais"
+    cta: "Saiba mais",
+    details: {
+      intro: "O Monteiro Advocacia atua como um parceiro estratégico do seu negócio, convertendo riscos legais em oportunidades seguras de crescimento. Nossa expertise engloba desde a modelagem societária e contratual até a mais dura representação em litígios corporativos.",
+      sections: [
+        { subtitle: "Soluções Estratégicas", text: "Desenhamos estruturas jurídicas sob medida para operações complexas de M&A, joint ventures e reorganizações societárias, garantindo compliance e proteção dos sócios." },
+        { subtitle: "Seu Aliado Corporativo", text: "Muito mais que advogados, somos conselheiros de negócios. Trabalhamos lado a lado com CEOs e Diretorias para blindar a operação contra passivos ocultos e otimizar a carga tributária." },
+        { subtitle: "Desafios Comuns", text: "Impulsionamento de recuperação de crédito, disputas entre sócios (litígios societários), adequação rigorosa à LGPD e reestruturação de dívidas." },
+        { subtitle: "Compromisso de Excelência", text: "Tratamos os interesses da sua empresa como nossos, agindo preventivamente para evitar desgastes financeiros e preservar a saúde a longo prazo da companhia." }
+      ]
+    }
   },
   {
     id: "002",
@@ -22,7 +33,15 @@ const projects = [
     links: { live: "#", code: "#" },
     image: `${import.meta.env.BASE_URL}p2.webp`,
     bgColor: "#d95d14", // Laranja
-    cta: "Saiba mais"
+    cta: "Saiba mais",
+    details: {
+      intro: "No Monteiro Advocacia, sabemos que um contrato bem redigido é a primeira linha de defesa do seu patrimônio. Nós criamos arquiteturas contratuais inquebráveis que refletem com exatidão as intenções das partes e mitigam os riscos de interpretação dúbia.",
+      sections: [
+        { subtitle: "Blindagem e Segurança", text: "Revisamos minunciosamente cada cláusula de acordos operacionais, garantias, acordos de confidencialidade (NDA) e memorandos de entendimento (MoU)." },
+        { subtitle: "Antecipação de Conflitos", text: "Nossa redação prevê cenários adversos, estipulando penalidades justas e cláusulas de saída (exit) bem delineadas, evitando a judicialização de desacordos comerciais." },
+        { subtitle: "Flexibilidade Negocial", text: "Oferecemos assessoria em mesas de negociação. Traduzimos as demandas comerciais para uma linguagem jurídica robusta, equilibrando os interesses com segurança." }
+      ]
+    }
   },
   {
     id: "003",
@@ -32,7 +51,16 @@ const projects = [
     links: { live: "#", code: "#" },
     image: `${import.meta.env.BASE_URL}p3.webp`,
     bgColor: "#1a365d", // Azul
-    cta: "Saiba mais"
+    cta: "Saiba mais",
+    details: {
+      intro: "O Monteiro Advocacia se destaca na mediação desses desafios, transformando complexidades legais em soluções claras. Nossa expertise abrange desde a negociação de obrigações civis até a representação em litígios, sempre com o objetivo de proteger seus interesses.",
+      sections: [
+        { subtitle: "Soluções Personalizadas", text: "Cada caso é único. Seja na busca por justiça em casos de responsabilidade civil, ou na orientação segura em processos de sucessão, estamos ao seu lado com total transparência." },
+        { subtitle: "Seu Aliado no Direito Civil", text: "Você tem mais do que representação legal; você tem um aliado comprometido em garantir que seus direitos sejam defendidos e que você alcance resultados eficientes com mínimo estresse." },
+        { subtitle: "Desafios Comuns", text: "Disputas contratuais, responsabilidade civil envolvendo danos morais/materiais, questões patrimoniais e organização de sucessões e inventários." },
+        { subtitle: "Compromisso e Ética", text: "Nossa atuação é pautada pela ética e excelência, seja extrajudicialmente ou em processos complexos, buscando constantemente a excelência na prestação de serviços." }
+      ]
+    }
   },
   {
     id: "004",
@@ -42,16 +70,25 @@ const projects = [
     links: { live: "#", code: "#" },
     image: `${import.meta.env.BASE_URL}p4.webp`,
     bgColor: "#b7950b", // Amarelo
-    cta: "Saiba mais"
+    cta: "Saiba mais",
+    details: {
+      intro: "A segurança jurídica em transações de alto valor é inegociável. O Monteiro Advocacia promove uma análise minuciosa de todo o processo imobiliário, da aprovação da documentação até o registro definitivo, garantindo a solidez do seu investimento.",
+      sections: [
+        { subtitle: "Due Diligence Extensiva", text: "Realizamos o levantamento completo de certidões, análise de riscos ambientais e passivos tributários atrelados ao imóvel, mitigando ameaças ao comprador ou vendedor." },
+        { subtitle: "Estruturação de Negócios", text: "Assessoria na formatação jurídica de incorporações imobiliárias, loteamentos, fundos de investimento imobiliário (FII) e contratos de built-to-suit." },
+        { subtitle: "Regularização Patrimonial", text: "Atuação ágil em ações de usucapião (judicial e extrajudicial), retificação de área e desmembramento, trazendo liquidez a ativos antes paralisados." }
+      ]
+    }
   },
 ];
 
 interface ScrollStackCardProps {
   project: typeof projects[0];
   index: number;
+  onOpenModal: (project: typeof projects[0]) => void;
 }
 
-const ScrollStackCard = ({ project, index }: ScrollStackCardProps) => {
+const ScrollStackCard = ({ project, index, onOpenModal }: ScrollStackCardProps) => {
   return (
     <StarBorder
       as="div"
@@ -68,11 +105,9 @@ const ScrollStackCard = ({ project, index }: ScrollStackCardProps) => {
         </div>
 
         <StarBorder
-          as="a"
-          href={project.links.live}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="live-btn-star hover:opacity-80 transition-opacity"
+          as="button"
+          onClick={() => onOpenModal(project)}
+          className="live-btn-star hover:opacity-80 transition-opacity cursor-pointer"
           color={project.id === "001" ? "#ffffff, #cccccc" : `${project.bgColor}, ${project.bgColor}`}
         >
           {project.cta}
@@ -128,6 +163,7 @@ const SelectedWorks = () => {
 
   const [ready, setReady] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 1024);
@@ -136,7 +172,7 @@ const SelectedWorks = () => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
-  useLenis(({ scroll }) => {
+  const lenis = useLenis(({ scroll }) => {
     if (!ready) return;
 
     const cards = cardsRef.current;
@@ -359,6 +395,16 @@ const SelectedWorks = () => {
     setReady(true);
   }, [isMobile]);
 
+  useEffect(() => {
+    if (selectedProject) {
+      document.body.style.overflow = 'hidden';
+      if (lenis) lenis.stop();
+    } else {
+      document.body.style.overflow = '';
+      if (lenis) lenis.start();
+    }
+  }, [selectedProject, lenis]);
+
   const calculateAndRender = useCallback(() => {
     cachePositions();
   }, [cachePositions]);
@@ -400,7 +446,7 @@ const SelectedWorks = () => {
       <div ref={stackInnerRef} className="scroll-stack-inner px-6 md:px-12 lg:px-16" style={{ transformStyle: 'preserve-3d' }}>
         <div ref={voidContainerRef} className="void-container relative w-full flex flex-col items-center justify-center" style={{ willChange: 'transform, opacity', transformStyle: 'preserve-3d' }}>
           {projects.map((project, index) => (
-            <ScrollStackCard key={project.id} project={project} index={index} />
+            <ScrollStackCard key={project.id} project={project} index={index} onOpenModal={setSelectedProject} />
           ))}
         </div>
         <div className={`scroll-stack-end pointer-events-none h-[120vh]`} />
@@ -478,6 +524,64 @@ const SelectedWorks = () => {
           </svg>
         )}
       </div>
+
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedProject(null)}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-md p-4 md:p-8"
+          >
+            <motion.div
+              initial={{ y: 50, opacity: 0, scale: 0.95 }}
+              animate={{ y: 0, opacity: 1, scale: 1 }}
+              exit={{ y: 50, opacity: 0, scale: 0.95 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              onClick={(e) => e.stopPropagation()}
+              className="bg-[#050505] border border-white/10 shadow-2xl p-8 md:p-12 max-w-3xl w-full max-h-[85vh] overflow-y-auto relative rounded-xl text-white flex flex-col no-scrollbar"
+            >
+              <button 
+                onClick={() => setSelectedProject(null)} 
+                className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors group p-2 bg-white/5 hover:bg-white/10 rounded-full"
+              >
+                <X size={20} className="group-hover:rotate-90 transition-transform duration-300" />
+              </button>
+              
+              <h2 className="text-3xl md:text-5xl font-black mb-6 uppercase tracking-tighter cursor-default">
+                {selectedProject.title.split('').map((char, index) => (
+                  <motion.span 
+                    key={index}
+                    whileHover={{ scale: 1.2, color: selectedProject.bgColor }}
+                    className="inline-block transition-colors duration-200"
+                  >
+                    {char === ' ' ? '\u00A0' : char}
+                  </motion.span>
+                ))}
+              </h2>
+              
+              <div className="space-y-8 text-sm md:text-base text-white/70 leading-relaxed font-light mt-2">
+                <p className="text-white text-lg md:text-xl font-medium leading-snug">
+                  {selectedProject.details.intro}
+                </p>
+                <div className="h-[1px] w-full bg-white/10" />
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                  {selectedProject.details.sections.map((sec, idx) => (
+                    <div key={idx} className="group">
+                      <h3 className="text-white font-bold mb-3 uppercase tracking-widest text-xs group-hover:text-primary transition-colors flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: selectedProject.bgColor }}></span>
+                        {sec.subtitle}
+                      </h3>
+                      <p className="opacity-80 group-hover:opacity-100 transition-opacity">{sec.text}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
