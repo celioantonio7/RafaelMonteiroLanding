@@ -95,7 +95,7 @@ const InsightPost = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.6, duration: 0.8 }}
-          className="max-w-3xl mx-auto prose prose-invert prose-lg md:prose-xl prose-headings:uppercase prose-headings:tracking-tight prose-headings:font-black prose-p:text-white/70 prose-p:font-light prose-p:leading-relaxed prose-a:text-white prose-a:underline-offset-4 hover:prose-a:text-white/70 prose-strong:text-white prose-ul:text-white/70"
+          className="max-w-3xl mx-auto prose prose-invert md:prose-lg lg:prose-xl prose-headings:uppercase prose-headings:tracking-tight prose-headings:font-black prose-p:text-white/70 prose-p:font-light prose-p:leading-relaxed prose-a:text-white prose-a:underline-offset-4 hover:prose-a:text-white/70 prose-strong:text-white prose-ul:text-white/70"
         >
           <ReactMarkdown>{post.content}</ReactMarkdown>
         </motion.div>

@@ -35,6 +35,12 @@ const Footer = () => {
     },
   };
 
+  // Dynamic name logic
+  const searchParams = new URLSearchParams(window.location.search);
+  const rawName = searchParams.get("name") || "Rafael Monteiro";
+  const decodedName = decodeURIComponent(rawName);
+  const lastName = decodedName.split(" ").pop() || "Monteiro";
+
   return (
     <footer ref={footerRef} className="bg-black text-white font-sans pt-12 md:pt-20 border-t border-white h-screen flex flex-col">
 
@@ -52,7 +58,7 @@ const Footer = () => {
             Contato
           </h3>
           <p className="font-sans text-xs md:text-sm font-medium uppercase tracking-wide leading-relaxed">
-            Monteiro Advocacia
+            {lastName} Advocacia
           </p>
           <p className="font-sans text-xs md:text-sm font-medium uppercase tracking-wide leading-relaxed text-white/60">
             São Paulo — SP
@@ -125,8 +131,8 @@ const Footer = () => {
         style={{ opacity: textOpacity, scale: textScale }}
         className="w-full flex-1 flex flex-col justify-center items-center overflow-hidden select-none pb-4"
       >
-        <h1 className="font-sans font-black text-[20vw] leading-[0.8] text-white uppercase tracking-tighter flex items-start">
-          Monteiro
+        <h1 className="font-sans font-black text-[15vw] lg:text-[18vw] leading-[0.8] text-white uppercase tracking-tighter flex items-start truncate max-w-full px-4">
+          {lastName}
           <span className="text-xl md:text-4xl lg:text-6xl font-medium mt-[2vw] ml-1 opacity-60">
             ®
           </span>

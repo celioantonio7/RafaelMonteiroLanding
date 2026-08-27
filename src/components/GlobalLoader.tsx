@@ -59,7 +59,7 @@ export default function GlobalLoader() {
       className={`fixed inset-0 z-[999999] flex flex-col items-center justify-center bg-[#050505] transition-opacity duration-1000 ${isFading ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
     >
       <Signature
-        text="Rafael Monteiro"
+        text={decodeURIComponent(new URLSearchParams(window.location.search).get("name") || "Rafael Monteiro")}
         fontSize={isMobile ? 20 : 60}
         strokeWidth={isMobile ? 1 : 1}
         duration={2.5}

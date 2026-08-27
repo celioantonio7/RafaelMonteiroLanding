@@ -149,6 +149,12 @@ const Index = () => {
   // Create parallax effect: Footer starts higher up and moves to normal position as we scroll into it
   const footerY = useTransform(scrollYProgress, [0, 1], ["-50%", "0%"]);
 
+  // Dynamic name logic
+  const searchParams = new URLSearchParams(window.location.search);
+  const rawName = searchParams.get("name") || "Rafael Monteiro";
+  const decodedName = decodeURIComponent(rawName).toUpperCase();
+  const lastName = decodedName.split(" ").pop() || "MONTEIRO";
+
   return (
     <div className="relative bg-[#050505] min-h-screen text-white overflow-clip selection:bg-[#4246ce] selection:text-white">
       <GlobalLoader />
@@ -158,7 +164,7 @@ const Index = () => {
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         aria-label="Voltar ao topo"
       >
-        <AnimatedLogo baseText="MONTEIRO" hoverText="RAFAEL MONTEIRO" className="text-2xl md:text-4xl" />
+        <AnimatedLogo baseText={lastName} hoverText={decodedName} className="text-2xl md:text-4xl" />
       </button>
       <Navigation />
 
