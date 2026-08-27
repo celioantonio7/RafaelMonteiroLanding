@@ -60,11 +60,11 @@ export default function GlobalLoader() {
     >
       <Signature
         text={decodeURIComponent(new URLSearchParams(window.location.search).get("name") || "Rafael Monteiro")}
-        fontSize={isMobile ? 20 : 60}
-        strokeWidth={isMobile ? 1 : 1}
+        fontSize={isMobile ? 30 : 80}
+        strokeWidth={isMobile ? 1.5 : 2}
         duration={2.5}
         color="#ffffff"
-        fontUrl="/fonte/LastoriaBoldRegular.otf"
+        fontUrl="/fonte/PinyonScript-Regular.ttf"
       />
     </div>
   );
