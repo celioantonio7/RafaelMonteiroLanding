@@ -398,12 +398,10 @@ const SelectedWorks = () => {
   useEffect(() => {
     if (selectedProject) {
       document.body.style.overflow = 'hidden';
-      if (lenis) lenis.stop();
     } else {
       document.body.style.overflow = '';
-      if (lenis) lenis.start();
     }
-  }, [selectedProject, lenis]);
+  }, [selectedProject]);
 
   const calculateAndRender = useCallback(() => {
     cachePositions();
@@ -540,6 +538,7 @@ const SelectedWorks = () => {
               exit={{ y: 50, opacity: 0, scale: 0.95 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
               onClick={(e) => e.stopPropagation()}
+              data-lenis-prevent="true"
               className="bg-[#050505] border border-white/10 shadow-2xl p-8 md:p-12 max-w-3xl w-full max-h-[85vh] overflow-y-auto relative rounded-xl text-white flex flex-col no-scrollbar"
             >
               <button 
