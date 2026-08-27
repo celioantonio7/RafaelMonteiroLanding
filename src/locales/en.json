@@ -1,0 +1,17 @@
+{
+  "hero": {
+    "title_line1": "Legal",
+    "title_line2": "Strategy",
+    "description": "Tailored legal representation for individuals and companies needing to make decisions with security, clarity, and confidence.",
+    "schedule_btn": "Schedule Consultation",
+    "availability": "Serving clients worldwide",
+    "badges": {
+      "years_label": "Years of Experience",
+      "years_value": "15+",
+      "cases_label": "Cases Resolved",
+      "cases_value": "2K+",
+      "hq_label": "Headquarters",
+      "hq_value": "SP—BR"
+    }
+  }
+}

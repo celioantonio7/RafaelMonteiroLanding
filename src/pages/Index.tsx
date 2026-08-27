@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { motion, useSpring, useMotionValue, useScroll, useTransform } from "framer-motion";
-import { Github, Linkedin, Instagram, Mail } from "lucide-react";
+import { Github, Linkedin, Instagram, Mail, Globe } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 // Components
 import About from "./About";
@@ -19,7 +20,9 @@ import GlobalLoader from "@/components/GlobalLoader";
 
 // (BrandLogo removido, agora usamos o AnimatedLogo que vem de "@/components/AnimatedLogo")
 
-const AvailabilityBadge = () => (
+const AvailabilityBadge = () => {
+  const { t } = useTranslation();
+  return (
   <motion.div
     initial={{ opacity: 0, y: -10 }}
     animate={{ opacity: 1, y: 0 }}
@@ -32,10 +35,10 @@ const AvailabilityBadge = () => (
       <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-green-400" />
     </span>
     <span className="font-sans font-black text-[9px] tracking-[0.25em] uppercase text-white">
-      Atendimento em todo o Brasil
+      {t("hero.availability")}
     </span>
   </motion.div>
-);
+)};
 
 const SocialStrip = () => {
   const socials = [
@@ -72,7 +75,9 @@ const SocialStrip = () => {
   );
 };
 
-const SpinningCTA = () => (
+const SpinningCTA = () => {
+  const { t } = useTranslation();
+  return (
   <motion.div
     initial={{ opacity: 0, scale: 0.8 }}
     animate={{ opacity: 1, scale: 1 }}
@@ -96,7 +101,7 @@ const SpinningCTA = () => (
           <path id="cta-circle-path" d="M65,65 m-50,0 a50,50 0 1,1 100,0 a50,50 0 1,1 -100,0" />
         </defs>
         <text fill="rgba(255,255,255,1)" fontSize="8.5" fontFamily="'Inter', sans-serif" fontWeight="900" letterSpacing="4">
-          <textPath href="#cta-circle-path">AGENDAR CONSULTA · AGENDAR CONSULTA ·&nbsp;</textPath>
+          <textPath href="#cta-circle-path">{t("hero.schedule_btn").toUpperCase()} · {t("hero.schedule_btn").toUpperCase()} ·&nbsp;</textPath>
         </text>
       </svg>
       <span className="absolute inset-4 rounded-full bg-white scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out" style={{ transformOrigin: "center" }} />
@@ -105,7 +110,7 @@ const SpinningCTA = () => (
       </svg>
     </a>
   </motion.div>
-);
+)};
 
 const MobileSocialStrip = () => {
   const socials = [
@@ -129,7 +134,10 @@ const MobileSocialStrip = () => {
   );
 };
 
+
+
 const Index = () => {
+  const { t } = useTranslation();
   const footerContainerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: footerContainerRef,
@@ -145,7 +153,7 @@ const Index = () => {
     <div className="relative bg-[#050505] min-h-screen text-white overflow-clip selection:bg-[#4246ce] selection:text-white">
       <GlobalLoader />
       {/* Global Scroll Progress Bar removida para um visual mais premium e limpo */}
-      <button 
+      <button
         className="fixed top-6 left-6 md:top-8 md:left-10 z-50 mix-blend-difference cursor-pointer focus:outline-none group"
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         aria-label="Voltar ao topo"
@@ -163,7 +171,7 @@ const Index = () => {
       <section className="relative h-screen bg-black flex flex-col px-6 py-12 md:px-16 md:py-16 z-20 overflow-hidden">
         {/* 3D Statue Canvas Background */}
         <JusticeStatue />
-        
+
         <AvailabilityBadge />
         <SocialStrip />
         <SpinningCTA />
@@ -188,13 +196,13 @@ const Index = () => {
           >
             <a href="#contact" className="group relative overflow-hidden border border-white/30 px-5 py-3 flex items-center gap-3 hover:border-white transition-colors duration-500 w-fit mb-6 md:hidden">
               <span className="absolute inset-0 bg-white translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-500 ease-in-out" />
-              <span className="relative font-sans font-black text-[10px] tracking-[0.25em] uppercase text-white group-hover:text-black transition-colors duration-300 z-10">Agendar consulta</span>
+              <span className="relative font-sans font-black text-[10px] tracking-[0.25em] uppercase text-white group-hover:text-black transition-colors duration-300 z-10">{t("hero.schedule_btn")}</span>
               <svg className="relative w-3 h-3 text-white group-hover:text-black transition-colors duration-300 z-10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2.5">
                 <path d="M1 6h10M6 1l5 5-5 5" />
               </svg>
             </a>
             <h1 className="font-sans font-bold text-5xl md:text-7xl lg:text-[8rem] xl:text-[9rem] leading-[0.9] tracking-tighter text-white uppercase text-left">
-              Estratégia<br />Jurídica
+              {t("hero.title_line1")}<br />{t("hero.title_line2")}
             </h1>
           </motion.div>
         </div>
@@ -208,7 +216,7 @@ const Index = () => {
           >
             <div className="w-12 h-[2px] bg-white mb-6 md:hidden" />
             <p className="font-sans text-xs md:text-sm font-medium text-white leading-relaxed tracking-wide uppercase text-left">
-              Atuação jurídica personalizada para pessoas e empresas que precisam tomar decisões com segurança, clareza e confiança.
+              {t("hero.description")}
             </p>
           </motion.div>
         </div>

@@ -1,0 +1,17 @@
+{
+  "hero": {
+    "title_line1": "Estratégia",
+    "title_line2": "Jurídica",
+    "description": "Atuação jurídica personalizada para pessoas e empresas que precisam tomar decisões com segurança, clareza e confiança.",
+    "schedule_btn": "Agendar consulta",
+    "availability": "Atendimento em todo o Brasil",
+    "badges": {
+      "years_label": "Anos de Atuação",
+      "years_value": "15+",
+      "cases_label": "Causas Resolvidas",
+      "cases_value": "2K+",
+      "hq_label": "Sede Corporativa",
+      "hq_value": "SP—BR"
+    }
+  }
+}
