@@ -75,43 +75,6 @@ const SocialStrip = () => {
   );
 };
 
-const SpinningCTA = () => {
-  const { t } = useTranslation();
-  return (
-  <motion.div
-    initial={{ opacity: 0, scale: 0.8 }}
-    animate={{ opacity: 1, scale: 1 }}
-    transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-    className="absolute md:z-30 lg:z-10 hidden md:flex items-center justify-center"
-    style={{ bottom: "4rem", right: "4rem" }}
-  >
-    <style>{`
-      @keyframes ctaSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-      .cta-ring { animation: ctaSpin var(--cta-spin-duration, 10s) linear infinite; transform-origin: center; }
-      .cta-wrap:hover .cta-ring { --cta-spin-duration: 3s; }
-      .cta-wrap { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-      .cta-wrap:hover { transform: scale(1.08); }
-    `}</style>
-    <a href="#contact" className="cta-wrap group relative flex items-center justify-center w-[130px] h-[130px]" aria-label="Get in touch">
-      <svg viewBox="0 0 130 130" className="absolute inset-0 w-full h-full pointer-events-none">
-        <circle cx="65" cy="65" r="62" fill="none" stroke="rgba(255,255,255,0.6)" strokeWidth="1.5" />
-      </svg>
-      <svg viewBox="0 0 130 130" className="cta-ring absolute inset-0 w-full h-full pointer-events-none">
-        <defs>
-          <path id="cta-circle-path" d="M65,65 m-50,0 a50,50 0 1,1 100,0 a50,50 0 1,1 -100,0" />
-        </defs>
-        <text fill="rgba(255,255,255,1)" fontSize="8.5" fontFamily="'Inter', sans-serif" fontWeight="900" letterSpacing="4">
-          <textPath href="#cta-circle-path">{t("hero.schedule_btn").toUpperCase()} · {t("hero.schedule_btn").toUpperCase()} ·&nbsp;</textPath>
-        </text>
-      </svg>
-      <span className="absolute inset-4 rounded-full bg-white scale-0 group-hover:scale-100 transition-transform duration-500 ease-in-out" style={{ transformOrigin: "center" }} />
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="relative z-10 w-6 h-6 text-white group-hover:text-black" style={{ transition: "color 0.3s ease" }}>
-        <path d="M7 17L17 7M17 7H7M17 7v10" />
-      </svg>
-    </a>
-  </motion.div>
-)};
-
 const MobileSocialStrip = () => {
   const socials = [
     { label: "LinkedIn", icon: Linkedin, href: "https://www.linkedin.com/" },
@@ -177,10 +140,8 @@ const Index = () => {
       <section className="relative h-screen bg-black flex flex-col px-6 py-12 md:px-16 md:py-16 z-20 overflow-hidden">
         {/* 3D Statue Canvas Background */}
         <JusticeStatue />
-
         <AvailabilityBadge />
         <SocialStrip />
-        <SpinningCTA />
         {/* <div className="hidden lg:block"><SplashCursor /></div> */}
 
         {/* Mobile Midpoint Buffer: 80px total height from top to clear hamburger (Hamburger at 24px + 56px height) */}
@@ -198,34 +159,26 @@ const Index = () => {
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="w-fit"
+            className="w-fit flex flex-col items-start gap-8"
           >
-            <a href="#contact" className="group relative overflow-hidden border border-white/30 px-5 py-3 flex items-center gap-3 hover:border-white transition-colors duration-500 w-fit mb-6 md:hidden">
-              <span className="absolute inset-0 bg-white translate-x-[-101%] group-hover:translate-x-0 transition-transform duration-500 ease-in-out" />
-              <span className="relative font-sans font-black text-[10px] tracking-[0.25em] uppercase text-white group-hover:text-black transition-colors duration-300 z-10">{t("hero.schedule_btn")}</span>
-              <svg className="relative w-3 h-3 text-white group-hover:text-black transition-colors duration-300 z-10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="2.5">
-                <path d="M1 6h10M6 1l5 5-5 5" />
-              </svg>
-            </a>
-            <h1 className="font-sans font-bold text-5xl md:text-7xl lg:text-[8rem] xl:text-[9rem] leading-[0.9] tracking-tighter text-white uppercase text-left">
+            <h1 className="font-sans font-bold text-4xl md:text-6xl lg:text-[6rem] xl:text-[7rem] leading-[0.9] tracking-tighter text-white uppercase text-left">
               {t("hero.title_line1")}<br />{t("hero.title_line2")}
             </h1>
+
+            <div className="flex flex-col gap-6 max-w-lg">
+              <p className="font-sans text-sm md:text-base font-medium text-white leading-relaxed tracking-wide uppercase text-left">
+                {t("hero.description")}
+              </p>
+              
+              <a href="#contact" className="button button--bestia w-fit">
+                <div className="button__bg"></div>
+                <span className="font-sans font-black text-xs tracking-[0.2em] uppercase">{t("hero.schedule_btn")}</span>
+              </a>
+            </div>
           </motion.div>
         </div>
 
-        <div className="z-10 grid grid-cols-1 md:grid-cols-12 w-full gap-4 mt-auto mb-8 md:mb-0">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
-            className="col-span-1 md:col-span-5 lg:col-span-4"
-          >
-            <div className="w-12 h-[2px] bg-white mb-6 md:hidden" />
-            <p className="font-sans text-xs md:text-sm font-medium text-white leading-relaxed tracking-wide uppercase text-left">
-              {t("hero.description")}
-            </p>
-          </motion.div>
-        </div>
+
       </section>
 
       {/* Content stack */}
